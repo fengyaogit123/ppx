@@ -1,44 +1,86 @@
 {
-  "name": "ppx",
-  "version": "1.0.0",
-  "description": "",
-  "private": true,
-  "dependencies": {
-    "egg": "^2.2.1",
-    "egg-scripts": "^2.5.0"
-  },
-  "devDependencies": {
-    "autod": "^3.0.1",
-    "autod-egg": "^1.0.0",
-    "egg-bin": "^4.3.5",
-    "egg-ci": "^1.8.0",
-    "egg-mock": "^3.14.0",
-    "eslint": "^4.11.0",
-    "eslint-config-egg": "^6.0.0",
-    "webstorm-disable-index": "^1.2.0"
-  },
-  "engines": {
-    "node": ">=8.9.0"
-  },
-  "scripts": {
-    "start": "egg-scripts start --port=443 --https.key=2_qxsite.xyz.key --https.cert=1_qxsite.xyz_bundle.crt --daemon --title=egg-server-ppx",
-    "stop": "egg-scripts stop --title=egg-server-ppx",
-    "dev": "egg-bin dev",
-    "debug": "egg-bin debug",
-    "test": "npm run lint -- --fix && npm run test-local",
-    "test-local": "egg-bin test",
-    "cov": "egg-bin cov",
-    "lint": "eslint .",
-    "ci": "npm run lint && npm run cov",
-    "autod": "autod"
-  },
-  "ci": {
-    "version": "8"
-  },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "author": "",
-  "license": "MIT"
+	"name": "yc-node",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"egg": {
+		"typescript": true
+	},
+	"scripts": {
+		"start": "cross-env EGG_SERVER_ENV=prod egg-scripts start --port=443 --https.key=2_qxsite.xyz.key --https.cert=1_qxsite.xyz_bundle.crt --daemon --title=egg-server-ppx",
+		"stop": "egg-scripts stop --title=egg-server-yc-node",
+		"start-dev": "cross-env EGG_SERVER_ENV=dev egg-scripts start --daemon --title=egg-server-yc-node-dev",
+		"stop-dev": "egg-scripts stop --title=egg-server-yc-node-dev",
+		"dev-service": "cross-env EGG_SERVER_ENV=dev egg-bin dev -r egg-ts-helper/register",
+		"local": "egg-bin dev -r egg-ts-helper/register",
+		"debug": "egg-bin debug -r egg-ts-helper/register",
+		"test-local": "egg-bin test -r egg-ts-helper/register",
+		"test": " npm run test-local",
+		"cov": "egg-bin cov -r egg-ts-helper/register",
+		"tsc": "ets && tsc -p tsconfig.json",
+		"ci": "npm run lint && npm run cov && npm run tsc",
+		"autod": "autod",
+		"lint": "tslint .",
+		"clean": "ets clean"
+	},
+	"dependencies": {
+		"async-validator": "^1.8.2",
+		"axios": "^0.18.0",
+		"egg": "^2.6.1",
+		"egg-alinode": "^2.0.1",
+		"egg-cors": "^2.0.0",
+		"egg-di": "^1.1.1",
+		"egg-mongoose": "^3.0.0",
+		"egg-redis": "^2.0.0",
+		"egg-router-plus": "^1.2.1",
+		"egg-scripts": "^2.6.0",
+		"egg-wxpay": "^0.1.0",
+		"http-proxy-middleware": "^0.18.0",
+		"http-status-codes": "^1.3.0",
+		"joi": "^13.4.0",
+		"json-stable-stringify": "^1.0.1",
+		"jsonwebtoken": "^8.2.2",
+		"koa-ratelimit": "^4.1.2",
+		"koa2-connect": "^1.0.2",
+		"lodash": "^4.17.10",
+		"uuid": "^3.2.1",
+		"xml2js": "^0.4.19"
+	},
+	"devDependencies": {
+		"@types/http-proxy-middleware": "^0.17.4",
+		"@types/ioredis": "^3.2.12",
+		"@types/joi": "^13.3.0",
+		"@types/jsonwebtoken": "^7.2.7",
+		"@types/lodash": "^4.14.112",
+		"@types/mocha": "^2.2.40",
+		"@types/morgan": "^1.7.35",
+		"@types/node": "^7.0.12",
+		"@types/supertest": "^2.0.0",
+		"@types/uuid": "^3.4.3",
+		"autod": "^3.0.1",
+		"autod-egg": "^1.1.0",
+		"cross-env": "^5.2.0",
+		"egg-bin": "^4.6.2",
+		"egg-ci": "^1.8.0",
+		"egg-mock": "^3.16.0",
+		"egg-ts-helper": "^1.4.2",
+		"tslib": "^1.9.0",
+		"tslint": "^4.0.0",
+		"typescript": "^2.8.1"
+	},
+	"engines": {
+		"node": ">=8.9.0"
+	},
+	"ci": {
+		"version": "8"
+	},
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"eslintIgnore": [
+		"coverage"
+	],
+	"author": "",
+	"license": "MIT"
 }

@@ -1,4 +1,6 @@
-logs/
+package-lock.json
+*.tar
+
 npm-debug.log
 node_modules/
 coverage/
@@ -10,7 +12,6 @@ logs/
 *.swp
 *.lock
 *.js
-package-lock.json
 !.autod.conf.js
 
 app/**/*.js
@@ -19,4 +20,3 @@ config/**/*.js
 app/**/*.map
 test/**/*.map
 config/**/*.map
-test/**/*.map
